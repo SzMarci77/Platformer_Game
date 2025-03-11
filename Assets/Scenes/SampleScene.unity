@@ -1790,7 +1790,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -3957,8 +3957,12 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1480302474611466010, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: airWalkSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480302474611466010, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: jumpStrength
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4432280956947360660, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: m_Size.x
@@ -4026,6 +4030,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7386431235265198030, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386431235265198030, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

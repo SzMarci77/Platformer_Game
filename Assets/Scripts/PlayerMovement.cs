@@ -21,21 +21,30 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            //Földön
-            if (touchingDirections.IsGrounded)
+            if (CanMove)
             {
-                return IsRunning ? runSpeed : walkSpeed;
+                //Földön
+                if (touchingDirections.IsGrounded)
+                {
+                    return IsRunning ? runSpeed : walkSpeed;
+                }
+                //Falon nincs mozgás
+                else if (touchingDirections.IsOnWall)
+                {
+                    return 0f;
+                }
+                //Levegőben
+                else
+                {
+                    return airWalkSpeed;
+                }
             }
-            //Falon
-            else if (touchingDirections.IsOnWall) 
-            {
-                return airWalkSpeed;
-            }
-            //Levegőben
             else
             {
-                return airWalkSpeed;
+                //Nincs mozgás
+                return 0f;
             }
+            
         }
     }
 
@@ -84,6 +93,14 @@ public class PlayerMovement : MonoBehaviour
 
     public bool _isFacingRight = true;
    
+    public bool CanMove
+    { 
+        get
+        {
+            return animator.GetBool(Animations.canMove);
+        } 
+    }
+
     Rigidbody2D rb;
     Animator animator;
 
@@ -135,12 +152,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            animator.SetTrigger(Animations.attackTrigger);
+        }
+    }
     public void OnJump(InputAction.CallbackContext context)
     {
         //Földön van-e a játékos + életben
-        if(context.started && touchingDirections.IsGrounded)
+        if(context.started && touchingDirections.IsGrounded && CanMove)
         {
-            animator.SetTrigger(Animations.jump);
+            animator.SetTrigger(Animations.jumpTrigger);
             rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
         }
     }
