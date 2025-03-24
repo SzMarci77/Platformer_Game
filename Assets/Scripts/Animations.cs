@@ -13,5 +13,6 @@ internal class Animations
     internal static string yVelocity = "yVelocity";
     internal static string jumpTrigger = "jump";
     internal static string attackTrigger = "attack";
+    internal static string hasTarget = "hasTarget";
     
 }
