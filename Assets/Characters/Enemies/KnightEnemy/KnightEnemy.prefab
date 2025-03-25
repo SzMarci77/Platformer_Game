@@ -362,7 +362,7 @@ MonoBehaviour:
   attackZone: {fileID: 544847650941623909}
   walkSpeed: 3
   walkStopRate: 0.06
-  walkDirectionVector: {x: 0, y: 0}
+  walkDirectionVector: {x: 1, y: 0}
   _hastarget: 0
 --- !u!114 &7909916751430625278
 MonoBehaviour:

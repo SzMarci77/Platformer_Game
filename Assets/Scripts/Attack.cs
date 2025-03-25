@@ -17,22 +17,23 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Can be hit?
+        Debug.Log("Játékos támadás triggerelve! Cél: " + collision.gameObject.name);
+
+        // Can be hit?
         Damageable damageable = collision.GetComponent<Damageable>();
-
-        if (damageable != null) 
+        if (damageable != null)
         {
-            Vector2 delieveredKnockback = transform.parent.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
-
+            Vector2 deliveredKnockback = transform.parent.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
 
             // Hit the target
-            bool gotHit = damageable.Hit(attackDamage, delieveredKnockback);
+            bool gotHit = damageable.Hit(attackDamage, deliveredKnockback);
 
-            if (gotHit) 
+            if (gotHit)
             {
                 Debug.Log(collision.name + " hit for " + attackDamage);
             }
-            
         }
     }
+
+
 }
