@@ -6859,6 +6859,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 995671911744273984, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1480302474611466010, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: walkSpeed
       value: 5
@@ -6870,6 +6874,14 @@ PrefabInstance:
     - target: {fileID: 1480302474611466010, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: jumpStrength
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1777940818981785832, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: knockback.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1777940818981785832, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: knockback.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4432280956947360660, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: m_Size.x
@@ -6967,6 +6979,14 @@ PrefabInstance:
     - target: {fileID: 1960451157308988496, guid: 0a625f38e18208b4d93e3563f1032b1a, type: 3}
       propertyPath: m_GravityScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050279611298877153, guid: 0a625f38e18208b4d93e3563f1032b1a, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050279611298877153, guid: 0a625f38e18208b4d93e3563f1032b1a, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4815642403141736864, guid: 0a625f38e18208b4d93e3563f1032b1a, type: 3}
       propertyPath: walkSpeed

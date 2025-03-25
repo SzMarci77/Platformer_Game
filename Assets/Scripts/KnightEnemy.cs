@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDir))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDir), typeof(Damageable))]
 public class KnightEnemy : MonoBehaviour
 {
     public DetectionZone attackZone;
@@ -12,6 +12,7 @@ public class KnightEnemy : MonoBehaviour
     Rigidbody2D rb;
     TouchingDir touchingDir;
     Animator animator;
+    Damageable damageable;
 
     public enum WalkingDirection { Right, Left };
     public Vector2 walkDirectionVector = Vector2.right;
@@ -73,6 +74,7 @@ public class KnightEnemy : MonoBehaviour
         touchingDir = GetComponent<TouchingDir>();
         animator = GetComponent<Animator>();
         animator.SetBool(Animations.canMove, true);
+        damageable = GetComponent<Damageable>();
 
     }
 
@@ -88,14 +90,20 @@ public class KnightEnemy : MonoBehaviour
         {
             FlipDirection();
         }
-        if (CanMove)
+
+        if (!damageable.LockVelocity)
         {
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            if (CanMove)
+            {
+                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            }
         }
-        else
-        {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
-        }
+
+
         
     }
 
@@ -105,7 +113,7 @@ public class KnightEnemy : MonoBehaviour
         {
             WalkDirection = WalkingDirection.Left;
         }
-        else if (WalkDirection == WalkingDirection.Left) 
+        else if (WalkDirection == WalkingDirection.Left)
         {
             WalkDirection = WalkingDirection.Right;
         }
@@ -113,6 +121,9 @@ public class KnightEnemy : MonoBehaviour
         {
             Debug.LogError("Nincs helyes érték megadva: left/right");
         }
-
+    }
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }

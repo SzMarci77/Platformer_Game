@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDir))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDir), typeof(Damageable))]
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 8f;
     Vector2 moveInput;
     TouchingDir touchingDirections;
+    Damageable damageable;
 
     public float CurrentMoveSpeed
     {
@@ -104,16 +105,27 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
+    public bool IsAlive
+    {
+        get
+        {
+            return animator.GetBool(Animations.isAlive);
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDir>();
+        damageable = GetComponent<Damageable>();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+        if(!damageable.LockVelocity)
+            rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+
         animator.SetFloat(Animations.yVelocity, rb.velocity.y);
     }
 
@@ -121,9 +133,18 @@ public class PlayerMovement : MonoBehaviour
     {
       moveInput = context.ReadValue<Vector2>();
 
-        IsMoving = moveInput != Vector2.zero;
 
-        SetFacingDirection(moveInput);
+        if (IsAlive)
+        {
+            IsMoving = moveInput != Vector2.zero;
+
+            SetFacingDirection(moveInput);
+        }
+        else
+        {
+            IsMoving = false;
+        }
+
     }
 
     private void SetFacingDirection(Vector2 moveInput)
@@ -167,5 +188,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger(Animations.jumpTrigger);
             rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
         }
+    }
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
