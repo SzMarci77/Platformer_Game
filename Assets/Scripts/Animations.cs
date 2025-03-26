@@ -18,4 +18,5 @@ internal class Animations
     internal static string hasTarget = "hasTarget";
     internal static string isAlive = "isAlive";
     internal static string isHit = "isHit";
+    internal static string attackCooldown = "attackCooldown";
 }

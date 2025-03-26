@@ -6,6 +6,7 @@ using UnityEngine;
 public class KnightEnemy : MonoBehaviour
 {
     public DetectionZone attackZone;
+    public DetectionZone cliffDetectionZone;
     public float walkSpeed = 3f;
     public float walkStopRate = 0.06f;
 
@@ -68,6 +69,18 @@ public class KnightEnemy : MonoBehaviour
         }
     }
 
+    public float AttackCooldown
+    {
+        get
+        {
+            return animator.GetFloat(Animations.attackCooldown);
+        }
+        private set
+        {
+            animator.SetFloat(Animations.attackCooldown, Mathf.Max(value, 0));
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -81,6 +94,11 @@ public class KnightEnemy : MonoBehaviour
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
+
+        if(AttackCooldown > 0 )
+        {
+            AttackCooldown -= Time.deltaTime;
+        }
     }
 
 
@@ -125,5 +143,13 @@ public class KnightEnemy : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+
+    public void OnCliffDetected()
+    {
+        if (touchingDir.IsGrounded)
+        {
+            FlipDirection();
+        }
     }
 }
