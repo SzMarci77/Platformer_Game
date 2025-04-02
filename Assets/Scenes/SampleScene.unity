@@ -7103,12 +7103,24 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100373600259568514, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689789160392535830, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1777940818981785832, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: knockback.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1777940818981785832, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
       propertyPath: knockback.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549329675833030031, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: knockback.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4585733980677573904, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
@@ -7155,6 +7167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7584092988724476712, guid: 8b0f2d71fb3cd604f8d0ebe8e248c452, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7171,6 +7187,10 @@ PrefabInstance:
     - target: {fileID: 975938881795998179, guid: a0d73289d944307478af2b0924896f23, type: 3}
       propertyPath: m_Name
       value: Pineapple
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226498177047050647, guid: a0d73289d944307478af2b0924896f23, type: 3}
+      propertyPath: spinRotationSpeed.y
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4109810185603473517, guid: a0d73289d944307478af2b0924896f23, type: 3}
       propertyPath: m_LocalPosition.x
