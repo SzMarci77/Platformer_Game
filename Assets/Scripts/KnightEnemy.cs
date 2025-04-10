@@ -7,7 +7,8 @@ public class KnightEnemy : MonoBehaviour
 {
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
-    public float walkSpeed = 3f;
+    public float maxSpeed = 3f;
+    public float walkAccelaration = 30f;
     public float walkStopRate = 0.06f;
 
     Rigidbody2D rb;
@@ -113,7 +114,7 @@ public class KnightEnemy : MonoBehaviour
         {
             if (CanMove)
             {
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+                rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x + (walkAccelaration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed), rb.velocity.y);
             }
             else
             {
