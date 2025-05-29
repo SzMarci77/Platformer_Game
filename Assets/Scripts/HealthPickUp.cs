@@ -7,6 +7,12 @@ public class HealthPickUp : MonoBehaviour
     public int healthAmount = 20;
     public Vector3 spinRotationSpeed = new Vector3(0, 100, 0);
 
+    AudioSource pickUpSource;
+
+    private void Awake()
+    {
+        pickUpSource = GetComponent<AudioSource>();
+    }
     private void Update()
     {
         transform.eulerAngles += spinRotationSpeed * Time.deltaTime;
@@ -16,12 +22,17 @@ public class HealthPickUp : MonoBehaviour
     {
         Damageable damageable = collision.GetComponent<Damageable>();
 
-        if (damageable)
+        if (damageable && damageable.Health < damageable.MaxHealth)
         {
             bool waxHealed = damageable.Heal(healthAmount);
 
             if (waxHealed)
             {
+                // Play the pick-up sound
+                if (pickUpSource)
+                {
+                    AudioSource.PlayClipAtPoint(pickUpSource.clip, gameObject.transform.position, pickUpSource.volume);
+                }
                 Destroy(gameObject);
             }
             
